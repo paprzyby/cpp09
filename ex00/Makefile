@@ -6,13 +6,13 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 16:15:27 by paprzyby          #+#    #+#              #
-#    Updated: 2025/05/07 14:46:31 by paprzyby         ###   ########.fr        #
+#    Updated: 2025/05/07 14:51:04 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .SILENT:
 
-NAME =		BitcoinExchange
+NAME =		btc
 
 SRC =		main.cpp \
 			BitcoinExchange.cpp
