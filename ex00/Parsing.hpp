@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   Parsing.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 12:12:48 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/09 18:44:21 by paprzyby         ###   ########.fr       */
+/*   Created: 2025/05/09 18:42:08 by paprzyby          #+#    #+#             */
+/*   Updated: 2025/05/09 18:53:18 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BITCOINEXCHANGE_HPP
-# define BITCOINEXCHANGE_HPP
+#ifndef PARSING_HPP
+# define PARSING_HPP
 
 # include <iostream>
 # include <map>
-# include "Parsing.hpp"
+# include <fstream>
 
-class	BitcoinExchange : protected Parsing
+class	Parsing
 {
 	public:
-		BitcoinExchange();
-		BitcoinExchange(const BitcoinExchange &other);
-		BitcoinExchange &operator=(const BitcoinExchange &other);
-		~BitcoinExchange();
+		Parsing();
+		Parsing(const std::string file);
+		Parsing(const Parsing &other);
+		Parsing &operator=(const Parsing &other);
+		~Parsing();
 
-	private:
-		//
+		void	file_extension();
+		void	read_input_file();
+
+	protected:
+		std::string						file;
+		std::map<std::string, float>	input;
+		std::map<std::string, float>	data;
 };
 
 #endif
