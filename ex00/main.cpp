@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:18:14 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/09 15:49:06 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/09 18:31:54 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ int	main(int ac, char **av)
 	{
 		try
 		{
-			file_extension(av[1]);
+			std::string	file = av[1];
+			file_extension(file);
+			BitcoinExchange	btc;
+			std::ifstream opened_file(file.c_str());
+			btc.read_input_file(opened_file);
 		}
 		catch(const std::exception& e)
 		{
