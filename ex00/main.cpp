@@ -6,11 +6,25 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:18:14 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/07 14:55:55 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/09 15:49:06 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+void	file_extension(std::string file)
+{
+	std::size_t	dot = file.find_last_of('.');
+
+	if (dot != std::string::npos)
+	{
+		std::string extension = file.substr(dot + 1);
+		if (extension == "txt")
+			return ;
+		throw std::runtime_error("Wrong file extension");
+	}
+	throw std::runtime_error("Wrong file name");
+}
 
 int	main(int ac, char **av)
 {
@@ -21,7 +35,14 @@ int	main(int ac, char **av)
 	}
 	else if (ac == 2)
 	{
-		(void)av;
+		try
+		{
+			file_extension(av[1]);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
 		return (0);
 	}
 	else
@@ -31,3 +52,6 @@ int	main(int ac, char **av)
 		return (1);
 	}
 }
+
+//std::map<std::string, double> prices;
+//prices["2009-01-02"] = 123.45;
