@@ -6,7 +6,7 @@
 #    By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 16:15:27 by paprzyby          #+#    #+#              #
-#    Updated: 2025/05/09 18:45:35 by paprzyby         ###   ########.fr        #
+#    Updated: 2025/05/15 15:19:54 by paprzyby         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@
 NAME =		btc
 
 SRC =		main.cpp \
-			Parsing.cpp \
 			BitcoinExchange.cpp
 
 OBJ_DIR =	obj

@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:18:14 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/15 14:49:58 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:19:45 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,16 @@ int	main(int ac, char **av)
 	{
 		try
 		{
-			Parsing	parsing(av[1]);
-			parsing.file_extension();
-			parsing.read_database();
+			BitcoinExchange	btc(av[1]);
+			btc.file_extension();
+			btc.read_database();
 			std::string		line;
 			std::ifstream	file;
 
-			file = parsing.open_input_file();
+			file = btc.open_input_file();
 			while (std::getline(file, line))
 			{
-				parsing.validate_input(line);
-				//btc class
+				btc.validate_input(line);
 				//if everything is valid => main logic here
 			}
 			file.close();
