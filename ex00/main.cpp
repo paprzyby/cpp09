@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:18:14 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/09 18:54:12 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:10:29 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int	main(int ac, char **av)
 		{
 			Parsing	parsing(av[1]);
 			parsing.file_extension();
-			parsing.read_input_file();
+			parsing.read_database();
+			parsing.print_data(); //for testing
+			//parsing.read_input_file();
 		}
 		catch(const std::exception& e)
 		{

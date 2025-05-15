@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 18:42:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/09 18:53:18 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:10:09 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <iostream>
 # include <map>
 # include <fstream>
+# include <vector>
+# include <sstream>
 
 class	Parsing
 {
@@ -26,13 +28,19 @@ class	Parsing
 		Parsing &operator=(const Parsing &other);
 		~Parsing();
 
-		void	file_extension();
-		void	read_input_file();
+		void						file_extension();
+		void						read_database();
+		std::vector<std::string>	split(const std::string line, char c);
+		void print_data() const; //for testing
+		//void						read_input_file();
+		//void						validate_input(std::string line);
 
 	protected:
 		std::string						file;
 		std::map<std::string, float>	input;
 		std::map<std::string, float>	data;
+		std::vector<std::string>		split_data;
+		//std::vector<std::string>		split_input;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 18:41:59 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/09 18:54:32 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:10:26 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,71 @@ void	Parsing::file_extension()
 	throw std::runtime_error("Wrong file name");
 }
 
-void	Parsing::read_input_file()
+std::vector<std::string>	Parsing::split(const std::string line, char c)
 {
-	std::ifstream	opened_file(file.c_str());
-	std::string		line;
+	std::vector<std::string> result;
+	std::stringstream ss(line);
+	std::string token;
 
-	if (!opened_file.is_open())
+	while (std::getline(ss, token, c))
 	{
-		throw std::runtime_error("Error while opening the file");
+		result.push_back(token);
 	}
-	while (std::getline(opened_file, line))
-	{
-		//split "line" with "|"
-	}
+	return (result);
 }
+
+void Parsing::print_data() const //for testing
+{
+    for (const auto &entry : data)
+    {
+        std::cout << entry.first << " => " << entry.second << std::endl;
+    }
+}
+
+void	Parsing::read_database()
+{
+	std::ifstream database("data.csv");
+
+	if (!database)
+	{
+		throw std::runtime_error("Error while opening the database file");
+	}
+	std::string	line;
+	std::getline(database, line);
+	while (std::getline(database, line))
+	{
+		split_data = split(line, ',');
+		if (split_data.size() != 2)
+		{
+			throw std::runtime_error("Wrong syntax in database file");
+		}
+		data[split_data[0]] = std::stof(split_data[1]);
+	}
+	database.close();
+}
+
+//void	Parsing::validate_input(std::string line)
+//{
+//	split_input = split(line, ' ');
+//	if (split_input.size() != 3)
+//	{
+
+//	}
+//	//check for 3 nodes in vector container
+//	//check for "|" in the middle
+//}
+
+//void	Parsing::read_input_file()
+//{
+//	std::ifstream	opened_file(file.c_str());
+//	std::string		line;
+
+//	if (!opened_file.is_open())
+//	{
+//		throw std::runtime_error("Error while opening the file");
+//	}
+//	while (std::getline(opened_file, line))
+//	{
+//		//validate_input(line);
+//	}
+//}
