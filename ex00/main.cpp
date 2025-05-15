@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:18:14 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/15 14:10:29 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:49:58 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,17 @@ int	main(int ac, char **av)
 			Parsing	parsing(av[1]);
 			parsing.file_extension();
 			parsing.read_database();
-			parsing.print_data(); //for testing
-			//parsing.read_input_file();
+			std::string		line;
+			std::ifstream	file;
+
+			file = parsing.open_input_file();
+			while (std::getline(file, line))
+			{
+				parsing.validate_input(line);
+				//btc class
+				//if everything is valid => main logic here
+			}
+			file.close();
 		}
 		catch(const std::exception& e)
 		{
@@ -43,6 +52,3 @@ int	main(int ac, char **av)
 		return (1);
 	}
 }
-
-//std::map<std::string, double> prices;
-//prices["2009-01-02"] = 123.45;

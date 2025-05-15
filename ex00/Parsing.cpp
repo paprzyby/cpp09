@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 18:41:59 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/15 14:10:26 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/15 14:45:08 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,6 @@ std::vector<std::string>	Parsing::split(const std::string line, char c)
 	return (result);
 }
 
-void Parsing::print_data() const //for testing
-{
-    for (const auto &entry : data)
-    {
-        std::cout << entry.first << " => " << entry.second << std::endl;
-    }
-}
-
 void	Parsing::read_database()
 {
 	std::ifstream database("data.csv");
@@ -93,28 +85,39 @@ void	Parsing::read_database()
 	database.close();
 }
 
-//void	Parsing::validate_input(std::string line)
-//{
-//	split_input = split(line, ' ');
-//	if (split_input.size() != 3)
-//	{
+void	Parsing::validate_input(std::string line)
+{
+	split_input = split(line, ' ');
+	if (split_input.size() != 3)
+	{
+		std::cout << "Error: bad input => <date> | <value>" << std::endl;
+		return ;
+	}
+	//check for "|" in the middle
+	//check for negative values
+	//check for MAX_INT
+	split_input_date = split(split_input[0], '-');
+	if (split_input_date.size() != 3)
+	{
+		std::cout << "Error: bad input date => <yyyy-mm-dd> | <value>" << std::endl;
+		return ;
+	}
+	//check for negative values
+	//check for MAX_INT
+	//check for months (betwwen 01 and 12)
+	//check for day (between 01 and 31,30 or 28)
+}
 
-//	}
-//	//check for 3 nodes in vector container
-//	//check for "|" in the middle
-//}
+std::ifstream	Parsing::open_input_file()
+{
+	std::ifstream	opened_file(file.c_str());
 
-//void	Parsing::read_input_file()
-//{
-//	std::ifstream	opened_file(file.c_str());
-//	std::string		line;
+	if (!opened_file.is_open())
+	{
+		throw std::runtime_error("Error while opening the file");
+	}
+	return (opened_file);
+}
 
-//	if (!opened_file.is_open())
-//	{
-//		throw std::runtime_error("Error while opening the file");
-//	}
-//	while (std::getline(opened_file, line))
-//	{
-//		//validate_input(line);
-//	}
-//}
+//std::map<std::string, double> prices;
+//prices["2009-01-02"] = 123.45;
