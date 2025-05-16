@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 16:18:14 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/15 15:19:45 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:53:50 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,10 @@ int	main(int ac, char **av)
 			file = btc.open_input_file();
 			while (std::getline(file, line))
 			{
-				btc.validate_input(line);
-				//if everything is valid => main logic here
+				if (!(btc.validate_input(line)))
+				{
+					btc.calculate_exchange();
+				}
 			}
 			file.close();
 		}

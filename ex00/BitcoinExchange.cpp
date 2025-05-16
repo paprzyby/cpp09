@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:55:17 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/16 15:44:37 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/16 16:24:03 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,73 +85,6 @@ void	BitcoinExchange::read_database()
 	database.close();
 }
 
-void	BitcoinExchange::validate_input(std::string line)
-{
-	split_input = split(line, ' ');
-	if (split_input.size() != 3 || split_input[1] != "|")
-	{
-		std::cout << "Error: bad input => <date> | <value>" << std::endl;
-		return ;
-	}
-	for (std::size_t i = 0; i < split_input[0].size(); ++i)
-	{
-		if (split_input[0][i] != '-' && (split_input[0][i] > '9' && split_input[0][i] < '0'))
-		{
-			std::cout << "Error: bad input date => <yyyy-mm-dd> | <value>" << std::endl;
-			return ;
-		}
-	}
-	for (std::size_t i = 0; i < split_input[2].size(); ++i)
-	{
-		if (split_input[0][i] != '-' && (split_input[0][i] > '9' && split_input[0][i] < '0'))
-		{
-			std::cout << "Error: bad input date => <yyyy-mm-dd> | <value>" << std::endl;
-			return ;
-		}
-	}
-	double num = std::stod(split_input[2]);
-	if (num < 0)
-	{
-		std::cout << "Error: not a positive number." << std::endl;
-		return ;
-	}
-	if (num > static_cast<double>(INT_MAX))
-	{
-		std::cout << "Error: too large a number" << std::endl;
-		return ;
-	}
-	split_input_date = split(split_input[0], '-');
-	if (split_input_date.size() != 3)
-	{
-		std::cout << "Error: bad input date => <yyyy-mm-dd> | <value>" << std::endl;
-		return ;
-	}
-	int year = std::stoi(split_input_date[0]);
-	int month = std::stoi(split_input_date[1]);
-	int day = std::stoi(split_input_date[2]);
-	if (month < 1 || month > 12 || day < 1 || day > 31)
-	{
-		std::cerr << "Error: bad input => " << split_input[0] << std::endl;
-		return ;
-	}
-	if ((day > 30) && (month == 04 || month == 06 || month == 9 || month == 11))
-	{
-		std::cerr << "Error: bad input => " << split_input[0] << std::endl;
-		return ;
-	}
-	if (month == 2)
-	{
-		bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-		if (day > 29 || (day == 29 && day != leap))
-		{
-			std::cerr << "Error: bad input => " << split_input[0] << std::endl;
-			return ;
-		}
-	}
-
-	std::cout << split_input[0] << std::endl; //testing
-}
-
 std::ifstream	BitcoinExchange::open_input_file()
 {
 	std::ifstream	opened_file(file.c_str());
@@ -163,5 +96,88 @@ std::ifstream	BitcoinExchange::open_input_file()
 	return (opened_file);
 }
 
-//std::map<std::string, double> prices;
-//prices["2009-01-02"] = 123.45;
+bool	BitcoinExchange::validate_input(std::string line)
+{
+	input = split(line, ' ');
+	if (input.size() != 3 || input[1] != "|")
+	{
+		std::cout << "Error: bad input => <date> | <value>" << std::endl;
+		return (1);
+	}
+	for (std::size_t i = 0; i < input[0].size(); ++i)
+	{
+		if (input[0][i] != '-' && (input[0][i] > '9' && input[0][i] < '0'))
+		{
+			std::cout << "Error: bad input date => <yyyy-mm-dd> | <value>" << std::endl;
+			return (1);
+		}
+	}
+	for (std::size_t i = 0; i < input[2].size(); ++i)
+	{
+		if (input[0][i] != '-' && (input[0][i] > '9' && input[0][i] < '0'))
+		{
+			std::cout << "Error: bad input date => <yyyy-mm-dd> | <value>" << std::endl;
+			return (1);
+		}
+	}
+	double num = std::stod(input[2]);
+	if (num < 0)
+	{
+		std::cout << "Error: not a positive number." << std::endl;
+		return (1);
+	}
+	if (num > static_cast<double>(INT_MAX))
+	{
+		std::cout << "Error: too large a number" << std::endl;
+		return (1);
+	}
+	input_date = split(input[0], '-');
+	if (input_date.size() != 3)
+	{
+		std::cout << "Error: bad input date => <yyyy-mm-dd> | <value>" << std::endl;
+		return (1);
+	}
+	int year = std::stoi(input_date[0]);
+	int month = std::stoi(input_date[1]);
+	int day = std::stoi(input_date[2]);
+	if (month < 1 || month > 12 || day < 1 || day > 31)
+	{
+		std::cerr << "Error: bad input => " << input[0] << std::endl;
+		return (1);
+	}
+	if ((day > 30) && (month == 04 || month == 06 || month == 9 || month == 11))
+	{
+		std::cerr << "Error: bad input => " << input[0] << std::endl;
+		return (1);
+	}
+	if (month == 2)
+	{
+		bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+		if (day > 29 || (day == 29 && day != leap))
+		{
+			std::cerr << "Error: bad input => " << input[0] << std::endl;
+			return (1);
+		}
+	}
+	return (0);
+}
+
+void	BitcoinExchange::calculate_exchange()
+{
+	std::string input_date = input[0];
+	double input_value = std::stod(input[2]);
+	auto it = data.lower_bound(input_date);
+
+	if (it == data.end() || it->first != input_date)
+	{
+		if (it == data.begin())
+		{
+			std::cerr << "Error: no exchange rate available for date " << input_date << std::endl;
+			return;
+		}
+		--it;
+	}
+	double exchange_rate = it->second;
+	double exchanged_value = input_value * exchange_rate;
+	std::cout << input_date << " => " << input_value << " = " << exchanged_value << std::endl;
+}

@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:12:48 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/16 15:35:23 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/16 16:24:03 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ class	BitcoinExchange
 		void						read_database();
 		std::vector<std::string>	split(const std::string line, char c);
 		std::ifstream				open_input_file();
-		void						validate_input(std::string line);
+		bool						validate_input(std::string line);
+		void						calculate_exchange();
 
-	protected:
+	private:
 		std::string						file;
-		std::map<std::string, double>	input;
 		std::map<std::string, double>	data;
 		std::vector<std::string>		split_data;
-		std::vector<std::string>		split_input;
-		std::vector<std::string>		split_input_date;
+		std::vector<std::string>		input;
+		std::vector<std::string>		input_date;
 };
 
 #endif
