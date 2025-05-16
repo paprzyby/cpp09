@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:12:48 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/15 14:58:08 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:35:23 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ class	BitcoinExchange
 
 	protected:
 		std::string						file;
-		std::map<std::string, float>	input;
-		std::map<std::string, float>	data;
+		std::map<std::string, double>	input;
+		std::map<std::string, double>	data;
 		std::vector<std::string>		split_data;
 		std::vector<std::string>		split_input;
 		std::vector<std::string>		split_input_date;
