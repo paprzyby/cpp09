@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 12:12:48 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/16 16:24:03 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/16 16:38:52 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fstream>
 # include <vector>
 # include <sstream>
+# include <climits>
 
 class	BitcoinExchange
 {
