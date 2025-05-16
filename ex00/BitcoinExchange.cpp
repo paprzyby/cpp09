@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 14:55:17 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/16 16:24:03 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/16 16:35:34 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ BitcoinExchange::BitcoinExchange(const std::string file)
 	this->file = file;
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
-{
-	//finish
-	*this = other;
-}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : file(other.file), data(other.data),
+	split_data(other.split_data), input(other.input), input_date(other.input_date)	{}
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other)
 {
-	//finish
-	(void)other;
+	if (this != &other)
+	{
+		file = other.file;
+		data = other.data;
+		split_data = other.split_data;
+		input = other.input;
+		input_date = other.input_date;
+	}
 	return (*this);
 }
 
