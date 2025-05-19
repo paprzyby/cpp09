@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:35:52 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/19 13:10:43 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:12:34 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RPN_HPP
 
 # include <iostream>
+# include <stack>
 # include <sstream>
 
 class	RPN
@@ -27,6 +28,7 @@ class	RPN
 		void	input_validation(std::string str);
 
 	private:
+		std::stack<int> nums;
 
 };
 
