@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:35:37 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/19 13:08:31 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:49:06 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int	main(int ac, char **av)
 		{
 			RPN rpn;
 			rpn.input_validation(av[1]);
+			int	result;
+			result = rpn.calculation(av[1]);
+			std::cout << result << std::endl;
 		}
 		catch (const std::exception &e)
 		{
