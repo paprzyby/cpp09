@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:34 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/08/24 16:45:04 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:16:35 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class	PmergeMe
 		~PmergeMe();
 
 		void	parsingData(char **av);
+		void	FordJohnsonAlgorithm();
 
 	private:
 		std::deque<int>	input;

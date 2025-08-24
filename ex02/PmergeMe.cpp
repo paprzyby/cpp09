@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:52:08 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/08/24 17:09:26 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/08/24 17:28:40 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,22 @@ void	PmergeMe::parsingData(char **av)
 		}
 		input.push_back(static_cast<int>(num));
 	}
+}
+
+void	PmergeMe::FordJohnsonAlgorithm()
+{
+	std::cout << "Before: ";
+	for (std::deque<int>::iterator it = input.begin(); it != input.end(); ++it)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
+	std::sort(input.begin(), input.end());
+	sorted.assign(input.begin(), input.end());
+	std::cout << "After: ";
+	for (std::list<int>::iterator it = sorted.begin(); it != sorted.end(); ++it)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
 }
