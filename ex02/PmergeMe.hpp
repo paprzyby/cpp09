@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/20 13:51:34 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/05/20 13:52:04 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:38:21 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define PMERGEME_HPP
 
 # include <iostream>
+# include <deque>
+# include <list>
+# include <algorithm>
 
 class	PmergeMe
 {
@@ -22,6 +25,12 @@ class	PmergeMe
 		PmergeMe(const PmergeMe &other);
 		PmergeMe &operator=(const PmergeMe &other);
 		~PmergeMe();
+
+		void	parsingData(char **av);
+
+	private:
+		std::deque<int> input;
+		std::list<int> sorted;
 };
 
 #endif

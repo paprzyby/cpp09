@@ -6,7 +6,7 @@
 /*   By: paprzyby <paprzyby@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:35:37 by paprzyby          #+#    #+#             */
-/*   Updated: 2025/08/23 18:16:18 by paprzyby         ###   ########.fr       */
+/*   Updated: 2025/08/24 16:39:21 by paprzyby         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ int	main(int ac, char **av)
 	{
 		try
 		{
-			//code
+			PmergeMe	PmergeMe;
+
+			PmergeMe.parsingData(av);
+			//
 		}
 		catch (const std::exception &e)
 		{
