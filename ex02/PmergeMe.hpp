@@ -18,6 +18,7 @@
 # include <list>
 # include <algorithm>
 # include <limits>
+# include <climits>
 
 class	PmergeMe
 {
@@ -28,11 +29,11 @@ class	PmergeMe
 		~PmergeMe();
 
 		void	parsingData(char **av);
-		void	FordJohnsonAlgorithm();
+		void	printBefore(char **av);
+		void	FordJohnsonAlgorithm(char **av);
 
 	private:
-		std::deque<int>	input;
-		std::list<int>	sorted;
+		std::deque<int>	dequeContainer;
 };
 
 #endif

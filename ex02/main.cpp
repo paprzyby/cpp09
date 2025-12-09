@@ -24,10 +24,12 @@ int	main(int ac, char **av)
 	{
 		try
 		{
-			PmergeMe	PmergeMe;
+			PmergeMe	sorter;
 
-			PmergeMe.parsingData(av);
-			PmergeMe.FordJohnsonAlgorithm();
+			sorter.parsingData(av);
+			sorter.printBefore(av);
+			sorter.FordJohnsonAlgorithm(av);
+			return (0);
 		}
 		catch (const std::exception &e)
 		{

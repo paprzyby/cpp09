@@ -39,6 +39,7 @@ void	PmergeMe::parsingData(char **av)
 		try
 		{
 			num = std::stoll(av[i]);
+			//need to check for decimal characters
 		}
 		catch(const std::exception& e)
 		{
@@ -52,24 +53,21 @@ void	PmergeMe::parsingData(char **av)
 		{
 			throw std::runtime_error("Error: Only numbers that fit in an integer are allowed");
 		}
-		input.push_back(static_cast<int>(num));
 	}
 }
 
-void	PmergeMe::FordJohnsonAlgorithm()
+void	PmergeMe::printBefore(char **av)
 {
 	std::cout << "Before: ";
-	for (std::deque<int>::iterator it = input.begin(); it != input.end(); ++it)
+	for (int i = 1; av[i]; i++)
 	{
-		std::cout << *it << " ";
+		std::cout << av[i] << " ";
 	}
 	std::cout << std::endl;
-	std::sort(input.begin(), input.end());
-	sorted.assign(input.begin(), input.end());
-	std::cout << "After: ";
-	for (std::list<int>::iterator it = sorted.begin(); it != sorted.end(); ++it)
-	{
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
+}
+
+void	PmergeMe::FordJohnsonAlgorithm(char **av)
+{
+	//to be implemented
+	(void)av;
 }

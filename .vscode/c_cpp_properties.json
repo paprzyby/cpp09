@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}",
+                "${workspaceFolder}/ex00",
+                "${workspaceFolder}/ex01",
+                "${workspaceFolder}/ex02"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/c++",
+            "cStandard": "c++98",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
