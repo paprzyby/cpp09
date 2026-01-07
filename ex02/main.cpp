@@ -28,7 +28,7 @@ int	main(int ac, char **av)
 
 			sorter.parsingData(av);
 			sorter.printBefore(av);
-			sorter.FordJohnsonAlgorithm(av);
+			sorter.FordJohnsonAlgorithm();
 			return (0);
 		}
 		catch (const std::exception &e)

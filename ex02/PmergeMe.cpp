@@ -30,6 +30,16 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other)
 
 PmergeMe::~PmergeMe()	{}
 
+void	PmergeMe::printBefore(char **av)
+{
+	std::cout << "Before: ";
+	for (int i = 1; av[i]; i++)
+	{
+		std::cout << av[i] << " ";
+	}
+	std::cout << std::endl;
+}
+
 void	PmergeMe::parsingData(char **av)
 {
 	long long	num;
@@ -39,7 +49,6 @@ void	PmergeMe::parsingData(char **av)
 		try
 		{
 			num = std::stoll(av[i]);
-			//need to check for decimal characters
 		}
 		catch(const std::exception& e)
 		{
@@ -53,21 +62,23 @@ void	PmergeMe::parsingData(char **av)
 		{
 			throw std::runtime_error("Error: Only numbers that fit in an integer are allowed");
 		}
+		dequeContainer.push_back(static_cast<int>(num));
 	}
 }
 
-void	PmergeMe::printBefore(char **av)
+void	PmergeMe::FordJohnsonAlgorithm()
 {
-	std::cout << "Before: ";
-	for (int i = 1; av[i]; i++)
-	{
-		std::cout << av[i] << " ";
-	}
+	auto startDeque = std::chrono::high_resolution_clock::now();
+	std::deque<int> dequeCopy = dequeContainer;
+	auto endDeque = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double, std::micro> dequeDuration = endDeque - startDeque;
+
+	std::cout << "After: ";
+	std::cout << "<sorted numbers>";
 	std::cout << std::endl;
-}
 
-void	PmergeMe::FordJohnsonAlgorithm(char **av)
-{
-	//to be implemented
-	(void)av;
+	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque: "
+			<< dequeDuration.count() << " us" << std::endl;
+	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::list: "
+			<< "<count>" << " us" << std::endl;
 }

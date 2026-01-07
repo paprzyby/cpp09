@@ -19,6 +19,7 @@
 # include <algorithm>
 # include <limits>
 # include <climits>
+# include <chrono>
 
 class	PmergeMe
 {
@@ -30,7 +31,7 @@ class	PmergeMe
 
 		void	parsingData(char **av);
 		void	printBefore(char **av);
-		void	FordJohnsonAlgorithm(char **av);
+		void	FordJohnsonAlgorithm();
 
 	private:
 		std::deque<int>	dequeContainer;
