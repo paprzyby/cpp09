@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe()	{}
+PmergeMe::PmergeMe() : startDeque(std::chrono::high_resolution_clock::now()), endDeque(std::chrono::high_resolution_clock::now()), durationDeque(0) {}
 
 PmergeMe::PmergeMe(const PmergeMe &other)
 {
@@ -66,19 +66,22 @@ void	PmergeMe::parsingData(char **av)
 	}
 }
 
+void	PmergeMe::startMeasureTime()
+{
+	startDeque = std::chrono::high_resolution_clock::now();
+	endDeque = std::chrono::high_resolution_clock::now();
+	durationDeque = endDeque - startDeque;
+}
+
 void	PmergeMe::FordJohnsonAlgorithm()
 {
-	auto startDeque = std::chrono::high_resolution_clock::now();
-	std::deque<int> dequeCopy = dequeContainer;
-	auto endDeque = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<double, std::micro> dequeDuration = endDeque - startDeque;
-
+	startMeasureTime();
 	std::cout << "After: ";
 	std::cout << "<sorted numbers>";
 	std::cout << std::endl;
 
 	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque: "
-			<< dequeDuration.count() << " us" << std::endl;
+			<< durationDeque.count() << " us" << std::endl;
 	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::list: "
 			<< "<count>" << " us" << std::endl;
 }

@@ -32,9 +32,13 @@ class	PmergeMe
 		void	parsingData(char **av);
 		void	printBefore(char **av);
 		void	FordJohnsonAlgorithm();
+		void	startMeasureTime();
 
 	private:
 		std::deque<int>	dequeContainer;
+		std::chrono::high_resolution_clock::time_point	startDeque;
+		std::chrono::high_resolution_clock::time_point	endDeque;
+		std::chrono::duration<double, std::micro>		durationDeque;
 };
 
 #endif
