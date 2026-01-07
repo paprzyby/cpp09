@@ -63,6 +63,7 @@ void	PmergeMe::parsingData(char **av)
 			throw std::runtime_error("Error: Only numbers that fit in an integer are allowed");
 		}
 		dequeContainer.push_back(static_cast<int>(num));
+		listContainer.push_back(static_cast<int>(num));
 	}
 }
 
@@ -82,6 +83,6 @@ void	PmergeMe::FordJohnsonAlgorithm()
 
 	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque: "
 			<< durationDeque.count() << " us" << std::endl;
-	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::list: "
+	std::cout << "Time to process a range of " << listContainer.size() << " elements with std::list: "
 			<< "<count>" << " us" << std::endl;
 }

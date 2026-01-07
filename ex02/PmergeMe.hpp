@@ -39,6 +39,8 @@ class	PmergeMe
 		std::chrono::high_resolution_clock::time_point	startDeque;
 		std::chrono::high_resolution_clock::time_point	endDeque;
 		std::chrono::duration<double, std::micro>		durationDeque;
+
+		std::list<int>		listContainer;
 };
 
 #endif
