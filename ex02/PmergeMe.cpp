@@ -77,6 +77,22 @@ void	PmergeMe::startMeasureTime()
 void	PmergeMe::FordJohnsonAlgorithm()
 {
 	startMeasureTime();
+	std::deque<std::pair<int, int> > pairs;
+	bool	hasOddElement = false;
+	for (int i = 0; i < static_cast<int>(dequeContainer.size()); i = i + 2)
+	{
+		if (i + 1 < static_cast<int>(dequeContainer.size()))
+		{
+			if (dequeContainer[i] < dequeContainer[i + 1])
+				pairs.push_back(std::make_pair(dequeContainer[i], dequeContainer[i + 1]));
+			else
+				pairs.push_back(std::make_pair(dequeContainer[i + 1], dequeContainer[i]));
+		}
+		else
+		{
+			hasOddElement = true;
+		}
+	}
 	std::cout << "After: ";
 	std::cout << "<sorted numbers>";
 	std::cout << std::endl;
