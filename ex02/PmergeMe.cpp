@@ -79,6 +79,7 @@ void	PmergeMe::FordJohnsonAlgorithm()
 	startMeasureTime();
 	std::deque<std::pair<int, int> > pairs;
 	bool	hasOddElement = false;
+	int		oddElement = 0;
 	for (int i = 0; i < static_cast<int>(dequeContainer.size()); i = i + 2)
 	{
 		if (i + 1 < static_cast<int>(dequeContainer.size()))
@@ -91,14 +92,29 @@ void	PmergeMe::FordJohnsonAlgorithm()
 		else
 		{
 			hasOddElement = true;
+			oddElement = dequeContainer[i];
 		}
 	}
-	std::cout << "After: ";
-	std::cout << "<sorted numbers>";
+	std::deque<int> mainChain;
+	std::deque<int> pending;
+	for (size_t i = 0; i < pairs.size(); ++i)
+	{
+		mainChain.push_back(pairs[i].second);
+		pending.push_back(pairs[i].first);
+	}
+	std::sort(mainChain.begin(), mainChain.end());
+	std::cout << "Main chain sorted: ";
+	for (size_t i = 0; i < mainChain.size(); ++i)
+	{
+		std::cout << mainChain[i] << " ";
+	}
 	std::cout << std::endl;
+	// std::cout << "After: ";
+	// std::cout << "<sorted numbers>";
+	// std::cout << std::endl;
 
-	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque: "
-			<< durationDeque.count() << " us" << std::endl;
-	std::cout << "Time to process a range of " << listContainer.size() << " elements with std::list: "
-			<< "<count>" << " us" << std::endl;
+	// std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque: "
+	// 		<< durationDeque.count() << " us" << std::endl;
+	// std::cout << "Time to process a range of " << listContainer.size() << " elements with std::list: "
+	// 		<< "<count>" << " us" << std::endl;
 }
