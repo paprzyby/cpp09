@@ -33,6 +33,7 @@ class	PmergeMe
 		void	printBefore(char **av);
 		void	FordJohnsonAlgorithm();
 		void	startMeasureTime();
+		void	binaryInsert(std::deque<int>& chain, int value);
 
 	private:
 		std::deque<int>	dequeContainer;

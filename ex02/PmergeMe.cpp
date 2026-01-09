@@ -74,6 +74,12 @@ void	PmergeMe::startMeasureTime()
 	durationDeque = endDeque - startDeque;
 }
 
+void PmergeMe::binaryInsert(std::deque<int>& chain, int value)
+{
+    std::deque<int>::iterator pos = std::lower_bound(chain.begin(), chain.end(), value);
+    chain.insert(pos, value);
+}
+
 void	PmergeMe::FordJohnsonAlgorithm()
 {
 	startMeasureTime();
@@ -104,6 +110,20 @@ void	PmergeMe::FordJohnsonAlgorithm()
 	}
 	std::sort(mainChain.begin(), mainChain.end());
 	std::cout << "Main chain sorted: ";
+	for (size_t i = 0; i < mainChain.size(); ++i)
+	{
+		std::cout << mainChain[i] << " ";
+	}
+	std::cout << std::endl;
+	for (size_t i = 0; i < pending.size(); ++i)
+	{
+		binaryInsert(mainChain, pending[i]);
+	}
+	if (hasOddElement)
+	{
+		binaryInsert(mainChain, oddElement);
+	}
+	std::cout << "Main chain sorted2: ";
 	for (size_t i = 0; i < mainChain.size(); ++i)
 	{
 		std::cout << mainChain[i] << " ";
