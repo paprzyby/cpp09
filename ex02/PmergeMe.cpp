@@ -83,6 +83,7 @@ void PmergeMe::binaryInsert(std::deque<int>& chain, int value)
 void	PmergeMe::FordJohnsonAlgorithm()
 {
 	startMeasureTime();
+	//creating pairs
 	std::deque<std::pair<int, int> > pairs;
 	bool	hasOddElement = false;
 	int		oddElement = 0;
@@ -101,6 +102,7 @@ void	PmergeMe::FordJohnsonAlgorithm()
 			oddElement = dequeContainer[i];
 		}
 	}
+	//sorting pairs by second element
 	std::deque<int> mainChain;
 	std::deque<int> pending;
 	for (size_t i = 0; i < pairs.size(); ++i)
@@ -109,30 +111,39 @@ void	PmergeMe::FordJohnsonAlgorithm()
 		pending.push_back(pairs[i].first);
 	}
 	std::sort(mainChain.begin(), mainChain.end());
-	std::cout << "Main chain sorted: ";
-	for (size_t i = 0; i < mainChain.size(); ++i)
+	//inserting pending elements using Jacobsthal sequence
+	std::deque<size_t> jacob;
+	size_t j1 = 1;
+	size_t j2 = 0;
+	while (true)
 	{
-		std::cout << mainChain[i] << " ";
+		size_t j = j1 + 2 * j2;
+		if (j >= pending.size())
+			break;
+		jacob.push_back(j);
+		j2 = j1;
+		j1 = j;
 	}
-	std::cout << std::endl;
+	std::deque<bool> used(pending.size(), false);
+	for (size_t i = 0; i < jacob.size(); ++i)
+	{
+		size_t idx = jacob[i];
+		binaryInsert(mainChain, pending[idx]);
+		used[idx] = true;
+	}
 	for (size_t i = 0; i < pending.size(); ++i)
 	{
-		binaryInsert(mainChain, pending[i]);
+		if (!used[i])
+			binaryInsert(mainChain, pending[i]);
 	}
 	if (hasOddElement)
-	{
-		binaryInsert(mainChain, oddElement);
-	}
-	std::cout << "Main chain sorted2: ";
+   		binaryInsert(mainChain, oddElement);
+	std::cout << "After: ";
 	for (size_t i = 0; i < mainChain.size(); ++i)
 	{
 		std::cout << mainChain[i] << " ";
 	}
 	std::cout << std::endl;
-	// std::cout << "After: ";
-	// std::cout << "<sorted numbers>";
-	// std::cout << std::endl;
-
 	// std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque: "
 	// 		<< durationDeque.count() << " us" << std::endl;
 	// std::cout << "Time to process a range of " << listContainer.size() << " elements with std::list: "
