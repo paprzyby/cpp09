@@ -156,7 +156,7 @@ bool	BitcoinExchange::validate_input(std::string line)
 	if (month == 2)
 	{
 		bool leap = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
-		if (day > 29 || (day == 29 && day != leap))
+		if (day > 29 || (day == 29 && !leap))
 		{
 			std::cerr << "Error: bad input => " << input[0] << std::endl;
 			return (1);
