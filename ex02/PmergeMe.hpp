@@ -34,12 +34,21 @@ class	PmergeMe
 		void	FordJohnsonAlgorithm();
 		void	startMeasureTime();
 		void	binaryInsert(std::deque<int>& chain, int value);
+		void	createPairs();
+		void	sortPairs();
+		void	JacobsthalInsert();
 
 	private:
 		std::deque<int>	dequeContainer;
 		std::chrono::high_resolution_clock::time_point	startDeque;
 		std::chrono::high_resolution_clock::time_point	endDeque;
 		std::chrono::duration<double, std::micro>		durationDeque;
+		std::deque<std::pair<int, int>> pairs;
+		std::deque<int> mainChain;
+		std::deque<int> pending;
+		bool	hasOddElement;
+		int		oddElement;
+		
 
 		std::list<int>		listContainer;
 };

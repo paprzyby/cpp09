@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() : startDeque(std::chrono::high_resolution_clock::now()), endDeque(std::chrono::high_resolution_clock::now()), durationDeque(0) {}
+PmergeMe::PmergeMe() : startDeque(std::chrono::high_resolution_clock::now()), endDeque(std::chrono::high_resolution_clock::now()), durationDeque(0), hasOddElement(false), oddElement(0) {}
 
 PmergeMe::PmergeMe(const PmergeMe &other)
 {
@@ -80,13 +80,8 @@ void PmergeMe::binaryInsert(std::deque<int>& chain, int value)
     chain.insert(pos, value);
 }
 
-void	PmergeMe::FordJohnsonAlgorithm()
+void	PmergeMe::createPairs()
 {
-	startMeasureTime();
-	//creating pairs
-	std::deque<std::pair<int, int> > pairs;
-	bool	hasOddElement = false;
-	int		oddElement = 0;
 	for (int i = 0; i < static_cast<int>(dequeContainer.size()); i = i + 2)
 	{
 		if (i + 1 < static_cast<int>(dequeContainer.size()))
@@ -102,16 +97,20 @@ void	PmergeMe::FordJohnsonAlgorithm()
 			oddElement = dequeContainer[i];
 		}
 	}
-	//sorting pairs by second element
-	std::deque<int> mainChain;
-	std::deque<int> pending;
+}
+
+void	PmergeMe::sortPairs()
+{
 	for (size_t i = 0; i < pairs.size(); ++i)
 	{
 		mainChain.push_back(pairs[i].second);
 		pending.push_back(pairs[i].first);
 	}
 	std::sort(mainChain.begin(), mainChain.end());
-	//inserting pending elements using Jacobsthal sequence
+}
+
+void	PmergeMe::JacobsthalInsert()
+{
 	std::deque<size_t> jacob;
 	size_t j1 = 1;
 	size_t j2 = 0;
@@ -138,6 +137,19 @@ void	PmergeMe::FordJohnsonAlgorithm()
 	}
 	if (hasOddElement)
    		binaryInsert(mainChain, oddElement);
+}
+
+void	PmergeMe::FordJohnsonAlgorithm()
+{
+	//start measuring time:
+	startMeasureTime();
+	//creating pairs:
+	createPairs();
+	//sorting pairs by second element:
+	sortPairs();
+	//inserting pending elements using Jacobsthal sequence:
+	JacobsthalInsert();
+	//printing results:
 	std::cout << "After: ";
 	for (size_t i = 0; i < mainChain.size(); ++i)
 	{
