@@ -132,9 +132,18 @@ void	PmergeMe::JacobsthalInsert()
    		binaryInsert(mainChain, oddElement);
 }
 
+void	PmergeMe::printResult()
+{
+	std::cout << "After: ";
+	for (size_t i = 0; i < mainChain.size(); ++i)
+	{
+		std::cout << mainChain[i] << " ";
+	}
+	std::cout << std::endl;
+}
+
 void	PmergeMe::FordJohnsonAlgorithm()
 {
-	//start measuring time:
 	startTime = std::chrono::high_resolution_clock::now();
 	//creating pairs:
 	createPairs();
@@ -142,17 +151,9 @@ void	PmergeMe::FordJohnsonAlgorithm()
 	sortPairs();
 	//inserting pending elements using Jacobsthal sequence:
 	JacobsthalInsert();
-	//end measuring time:
 	endTime = std::chrono::high_resolution_clock::now();
-	//calculating duration:
 	durationTime = endTime - startTime;
-	//printing results:
-	std::cout << "After: ";
-	for (size_t i = 0; i < mainChain.size(); ++i)
-	{
-		std::cout << mainChain[i] << " ";
-	}
-	std::cout << std::endl;
+	printResult();
 	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque: "
 			<< durationTime.count() << " us" << std::endl;
 	// std::cout << "Time to process a range of " << listContainer.size() << " elements with std::list: "
