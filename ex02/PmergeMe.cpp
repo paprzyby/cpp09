@@ -12,7 +12,7 @@
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() : startDeque(std::chrono::high_resolution_clock::now()), endDeque(std::chrono::high_resolution_clock::now()), durationDeque(0), hasOddElement(false), oddElement(0) {}
+PmergeMe::PmergeMe() :  hasOddElement(false), oddElement(0) {}
 
 PmergeMe::PmergeMe(const PmergeMe &other)
 {
@@ -65,13 +65,6 @@ void	PmergeMe::parsingData(char **av)
 		dequeContainer.push_back(static_cast<int>(num));
 		listContainer.push_back(static_cast<int>(num));
 	}
-}
-
-void	PmergeMe::startMeasureTime()
-{
-	startDeque = std::chrono::high_resolution_clock::now();
-	endDeque = std::chrono::high_resolution_clock::now();
-	durationDeque = endDeque - startDeque;
 }
 
 void PmergeMe::binaryInsert(std::deque<int>& chain, int value)
@@ -142,13 +135,17 @@ void	PmergeMe::JacobsthalInsert()
 void	PmergeMe::FordJohnsonAlgorithm()
 {
 	//start measuring time:
-	startMeasureTime();
+	startTime = std::chrono::high_resolution_clock::now();
 	//creating pairs:
 	createPairs();
 	//sorting pairs by second element:
 	sortPairs();
 	//inserting pending elements using Jacobsthal sequence:
 	JacobsthalInsert();
+	//end measuring time:
+	endTime = std::chrono::high_resolution_clock::now();
+	//calculating duration:
+	durationTime = endTime - startTime;
 	//printing results:
 	std::cout << "After: ";
 	for (size_t i = 0; i < mainChain.size(); ++i)
@@ -156,8 +153,8 @@ void	PmergeMe::FordJohnsonAlgorithm()
 		std::cout << mainChain[i] << " ";
 	}
 	std::cout << std::endl;
-	// std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque: "
-	// 		<< durationDeque.count() << " us" << std::endl;
+	std::cout << "Time to process a range of " << dequeContainer.size() << " elements with std::deque: "
+			<< durationTime.count() << " us" << std::endl;
 	// std::cout << "Time to process a range of " << listContainer.size() << " elements with std::list: "
 	// 		<< "<count>" << " us" << std::endl;
 }
